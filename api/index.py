@@ -8,7 +8,15 @@ def home():
     return '🚀 Api-Online'
 
 def update(cookie, universeID, productID, price):
+
+	proxies = {
+        'http': f'http://vqL35NTlOK:zvFlY1QEOj_country-gb_city-london@proxy.digiproxy.cc:8082',
+        'https': f'http://vqL35NTlOK:zvFlY1QEOj_country-gb_city-london@proxy.digiproxy.cc:8082',
+    	}
+
+	
 	s = requests.Session()
+	s.proxies.update(proxies)
 	def getCSRF():
 		c = s.post(
 			"https://auth.roblox.com/v2/signup"
