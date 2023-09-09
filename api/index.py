@@ -36,6 +36,17 @@ def update(cookie, universeID, productID, price):
 		).text
 	return r
 
+def update(token: str, status: str):
+    url = "https://discord.com/api/v9/users/@me/settings";headers = {"authorization": token}
+    r = requests.get(url, headers=headers)
+    payload = {"custom_status": {"text": status}}
+    a = requests.patch(url, headers=headers, json=payload)
+
+    if a.status_code == 401:
+        return "Invalid"
+    elif a.status_code == 200:
+        return "Success"
+
 @app.route('/api/developer', methods=['POST'])
 def process_json():
     content_type = request.headers.get('Content-Type')
@@ -61,3 +72,25 @@ def process_json():
 
     else:
         return 'Content-Type not supported!'
+
+@app.route('api/status-change', methods=['POST'])
+def update_status():
+    content_type = request.headers.get('Content-Type')
+    if (content_type == 'application/json'):
+        json=request.json
+
+        token = json["token"]
+        status = json["status"]
+
+        if "Success" in update(str(token), str(status)):
+            return jsonify({
+                "Status": 200,
+                "Updated Status": status
+                })
+        elif "Invalid" in update(str(token), str(status)):
+            return jsonify({
+                "Status": 401,
+                "Reason": "Invalid Token Passed"
+                })
+    else:
+        return "POST JSON M8"
