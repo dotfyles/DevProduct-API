@@ -1,6 +1,7 @@
-# Rblx DevProduct-API
+# Rblx DevProduct-API Bot Integrations
 
-Simple Node.js + Vercel example that returns a "Hello World" response.
+Simple API written in python to connect with the roblox developer products API and can be intergrated into discord, telegram bots etc.
+ 
 
 ## How to Use
 
