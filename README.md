@@ -5,7 +5,7 @@ Simple API written in python to connect with the roblox developer products API a
 
 ## How to Use
 
-You can choose from one of the following two methods to use this repository:
+You can choose from one of the following two methods to use this API:
 
 ### One-Click Deploy
 
